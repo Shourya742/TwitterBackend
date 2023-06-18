@@ -5,4 +5,4 @@ const connect = async () => {
   console.log("Successfully connected to Database");
 };
 
-module.exports = { DbConnect: connect };
+module.exports = connect;
