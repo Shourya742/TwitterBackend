@@ -30,6 +30,16 @@ class tweetRepository {
       throw error;
     }
   }
+
+  async deleteTweet(data) {
+    try {
+      let tweet = await TweetModel.deleteOne(data);
+      return tweet;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 }
 
 module.exports = tweetRepository;
