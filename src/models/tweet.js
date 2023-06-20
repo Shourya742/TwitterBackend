@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const tweetSchema = new mongoose.Schema({
   content: {
     type: String,
+    required: true,
   },
   likes: {
     type: Number,
@@ -10,7 +11,7 @@ const tweetSchema = new mongoose.Schema({
     type: Number,
   },
   comment: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
   },
 });
 

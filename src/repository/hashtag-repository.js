@@ -1,14 +1,9 @@
 const { HashtagModel } = require("../models");
+const CrudRepository = require("./crud-repository");
 
-class HashtagRepository {
-  async create(data) {
-    try {
-      let hashtag = await HashtagModel.create(data);
-      return hashtag;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
+class HashtagRepository extends CrudRepository {
+  constructor() {
+    super(HashtagModel);
   }
 
   async bulkCreate(data) {
