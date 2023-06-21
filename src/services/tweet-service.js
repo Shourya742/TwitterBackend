@@ -12,7 +12,10 @@ class TweetService {
       .match(/#+[a-zA-Z0-9(_)]+/g)
       .map((tag) => tag.substring(1).toLowerCase());
     const tweet = await this.tweetRepository.create(data);
-    const alreadyPresentTags = await this.hashtagRepository.findbyName(tags);
+    const alreadyPresentTags = await this.hashtagRepository.getHashtagByName(
+      tags
+    );
+
     const textOfPresentTags = alreadyPresentTags.map((tags) => tags.text);
     let newTags = tags.filter((tag) => !textOfPresentTags.includes(tag));
     newTags = newTags.map((tag) => {
@@ -32,7 +35,7 @@ class TweetService {
   }
 
   async getTweet(tweetId) {
-    const tweet = await this.tweetRepository.getTweet(tweetId);
+    const tweet = await this.tweetRepository.findById(tweetId);
     return tweet;
   }
 }
