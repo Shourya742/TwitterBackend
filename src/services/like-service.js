@@ -21,12 +21,11 @@ class LikeService {
       likeable: modelId,
     });
 
-    console.log(exists);
     let isAdded;
     if (exists) {
       likeable.likes.pull(exists.id);
       await likeable.save();
-      await exists.remove();
+      this.likeRepository.destroy(exists.id);
       isAdded = false;
     } else {
       const newLike = await this.likeRepository.create({
